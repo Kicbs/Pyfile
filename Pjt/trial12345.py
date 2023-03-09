@@ -1,4 +1,3 @@
-#do not change -- this is only for reference
 '''
 # Open a new file for writing
 with open("data.txt", "w") as f:
@@ -22,14 +21,7 @@ with open("access.log", "r") as f:
     ip_dict = {}
     # Loop through each line
     for line in f:
-        # Extract IP address using regex
         ip, data1, data2 = line.partition(" - ")
-        #ip = re.search(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", line).group()
-        # Extract timestamp using regex
-        #ts = re.search(r"\[\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}", line).group()
-        # Remove [ from timestamp
-        #ts = ts[1:]
-        data2=data2[3:29]
         # Check if IP address is already in dictionary
         if ip in ip_dict:
             # Append timestamp to existing list
@@ -39,9 +31,9 @@ with open("access.log", "r") as f:
             ip_dict[ip] = [data2]
 
 # Open new file for writing
-with open("data.txt", "w") as g:
+with open("data345.txt", "w") as g:
     # Loop through dictionary items
     for key, value in ip_dict.items():
         # Write IP address, count, first time and last time to file
-        g.write(f"{key} {len(value)} {value[0]} {value[-1]}\n")
+        g.write(f"{key} {len(value)} {value[0][3:29]} {value[-1][3:29]}\n")
         
